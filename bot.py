@@ -5,7 +5,6 @@ from keyboards.client_keyboard import kbcl
 from aiogram.types import ReplyKeyboardRemove
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
 from aiogram.dispatcher.handler import CancelHandler
-#import os
 from aiogram.dispatcher.middlewares import BaseMiddleware
 from bd.bd import botBD
 from loguru import logger
