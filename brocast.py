@@ -10,10 +10,7 @@ Users = botBD.getUserId()
 
 async def main():
 
-    # Initialize a text broadcaster (you can directly pass a token)
     broadcaster = TextBroadcaster(Users, messageText, bot_token=Token)
-    
-    # Run the broadcaster and close it afterwards
     try:
         await broadcaster.run()
     finally:
