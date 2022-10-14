@@ -1,7 +1,6 @@
 from aiogram import Bot, types
 from aiogram.dispatcher import Dispatcher, FSMContext
 from aiogram.dispatcher.filters.state import State, StatesGroup
-from aiogram.utils import executor
 from keyboards.client_keyboard import kbcl
 from aiogram.types import ReplyKeyboardRemove
 from aiogram.contrib.fsm_storage.memory import MemoryStorage
@@ -73,21 +72,17 @@ async def echo(message : types.Message):
         await message.reply_document(doc)
     else:
         await message.answer("Не розумію",reply_markup=kbcl)
+
 async def on_startup(dp):
     await bot.set_webhook(WEBHOOK_URL)
-    # insert code here to run it after start
     logger.debug("Бот запущено")
 
 async def on_shutdown(dp):
     logger.debug('Зупиняюся..')
-    # insert code here to run it before shutdown
-    # Remove webhook (not acceptable in some cases)
     await bot.delete_webhook()
-    # Close DB connection (if used)
     await dp.storage.close()
     await dp.storage.wait_closed()
-    logger.debug('Бувай!')
-
+    
 if __name__ == '__main__':
     dp.middleware.setup(MidlWare())
     start_webhook(
@@ -99,6 +94,3 @@ if __name__ == '__main__':
         host=WEBAPP_HOST,
         port=WEBAPP_PORT,
     )   
-#print("Bot running")
-
-#executor.start_polling(dp,skip_updates=True)
