@@ -1,0 +1,11 @@
+version: "3.9"  # optional since v1.27.0
+services:
+  bot:
+    build: .
+    restart: always 
+    ports:
+      - "3003:3003"
+    volumes:
+      - .:/usr/src/app
+    environment:
+      TOKEN: 5649065961:AAFUV-OVw6hVgoTl7cXqFPIZXi3mdKMwINA
